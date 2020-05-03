@@ -8,10 +8,10 @@ server:
     context-path: /storage
 
 minio:
-  url:  http://127.0.0.1:9000
+  url:  http://127.0.0.1:9001
   key:
-    access: minioadmin
-    secret: minioadmin
+    access: minio
+    secret: minio123
 
 redis:
   host: redis://127.0.0.1
