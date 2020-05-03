@@ -47,6 +47,17 @@ public class MinioController {
     @Autowired
     private RedissonClient redissonClient;
 
+    @PostMapping("/createBucket")
+    public ResponseEntity<?> createBucket(@RequestBody Map<String, Object> payload) {
+        final String bucketName = (String) payload.get(NAME_KEY);
+        try {
+            minioClient.makeBucket(bucketName);
+        } catch (RegionConflictException | InvalidBucketNameException | NoSuchAlgorithmException | InsufficientDataException | IOException | InvalidKeyException | NoResponseException | ErrorResponseException | InternalException | InvalidResponseException | XmlPullParserException var3) {
+            throw new RuntimeException("Error while creating bucket in Minio", var3);
+        }
+        return ResponseEntity.ok("CREATED");
+    }
+
     @GetMapping("/getFile")
     public ResponseEntity<?> getFile(@RequestParam String bucket, @RequestParam String path) {
         final GetFileCache getFileCache = (GetFileCache) redissonClient.getBucket(bucket + path + MinioCacheEnum.GET).get();

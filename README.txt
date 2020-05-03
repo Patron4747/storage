@@ -6,13 +6,19 @@
 
 *** Функционал взаимодействия с Minio ***
 
-1. Получение файла
+1. Создание бакета
+    Пример http-запроса POST http://localhost:8011/storage/minio/createBucket,
+    Пример payload запроса:
+    {
+    	"name" : "my.bucket"
+    }
+2. Получение файла
     Пример http-запроса GET http://localhost:8011/storage/minio/getFile?bucket=my.bucket&path=test.txt,
     где bucket: имя бакета (предварительно должен быть создан), path: путь до файла и имя самого файла
-2. Получение мета-информации
+3. Получение мета-информации
     Пример http-запроса GET http://localhost:8011/storage/minio/getMeta?bucket=my.bucket&path=test.txt,
     где bucket: имя бакета (предварительно должен быть создан), path: путь до файла и имя самого файла
-3. Сохранение файла на Minio
+4. Сохранение файла на Minio
     Пример http-запроса PUT http://localhost:8011/storage/minio/uploadFile,
     Пример payload запроса:
     {
@@ -24,7 +30,7 @@
     	},
     	"bytes" : [56,56,56,78,89,45]
     }
-4. Удаление файла
+5. Удаление файла
     Пример http-запроса DELETE http://localhost:8011/storage/minio/deleteFile?bucket=my.bucket&path=test.txt,
     где bucket: имя бакета (предварительно должен быть создан), path: путь до файла и имя самого файла
 
