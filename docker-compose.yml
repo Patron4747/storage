@@ -1,20 +1,20 @@
 version: "2"
 services:
 
-  web:
+  app:
     build: ./
-    container_name: web
+    container_name: app
     ports:
       - "8011:8011"
     depends_on:
-      - db
-#    environment:
+      - postgre
+    environment:
 #      - SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/testdb
-#      - "SPRING_PROFILES_ACTIVE=dev"
+      - "SPRING_PROFILES_ACTIVE=docker"
 
-  db:
+  postgre:
     image: postgres:11.7
-    container_name: db
+    container_name: postgre
     environment:
       - POSTGRES_PASSWORD=58742
       - POSTGRES_USER=postgres

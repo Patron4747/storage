@@ -1,3 +1,7 @@
+---
+
+#Docker Profile
+
 server:
   port: 8011
   servlet:
@@ -14,6 +18,7 @@ redis:
   port: 6379
 
 spring:
+  profiles: docker
   jpa:
     database: POSTGRESQL
     show-sql: true
@@ -27,6 +32,44 @@ spring:
             non_contextual_creation: true
   datasource:
     platform: postgres
-    url: jdbc:postgresql://db:5432/storage
+    url: jdbc:postgresql://postgre:5432/storage
+    username: postgres
+    password: 58742
+
+---
+
+#Localhost Profile
+
+server:
+  port: 8011
+  servlet:
+    context-path: /storage
+
+minio:
+  url:  http://127.0.0.1:9000
+  key:
+    access: minioadmin
+    secret: minioadmin
+
+redis:
+  host: redis://127.0.0.1
+  port: 6379
+
+spring:
+  profiles: local
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/storage
     username: postgres
     password: 58742
