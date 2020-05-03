@@ -8,13 +8,13 @@ server:
     context-path: /storage
 
 minio:
-  url:  http://127.0.0.1:9001
+  url:  http://minio1:9001
   key:
     access: minio
     secret: minio123
 
 redis:
-  host: redis://127.0.0.1
+  host: redis://redis
   port: 6379
 
 spring:

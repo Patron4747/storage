@@ -35,7 +35,7 @@
     Пример payload запроса:
     {
         	"first-name" : "nameValue",
-        	"last-name" : "lastNameValue",
+        	"last-name" : "lastNameValue"
     }
 2. Множественное создание
     Пример http-запрос PUT http://localhost:8011/storage/customer/bulkCreate,
@@ -44,11 +44,11 @@
         "bulk" : [
             {
        	        "first-name" : "nameValue",
-       	        "last-name" : "lastNameValue",
+       	        "last-name" : "lastNameValue"
        	    },
        	    {
                 "first-name" : "nameValue",
-                "last-name" : "lastNameValue",
+                "last-name" : "lastNameValue"
             },
        	]
     }
@@ -63,5 +63,7 @@
 
 *** Docker ***
 
-1. Создание jar файла и docker image: mvn clean install package docker:build
-
+1. Приложение настроено для запуска при помощи единственной команды docker-compose up, которой нужно
+    "скормить" файл docker-compose.yml
+2. Все вышеперечисленные запросы доступны через хост докера 192.168.99.100,
+   Пример http-запрос GET http://192.168.99.100:8011/storage/customer/getById?id=12
