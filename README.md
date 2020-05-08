@@ -1,6 +1,6 @@
-# Локальный профиль
+# Локальный профиль (local)
 
-**Для корректной работы приложения в локальном профиле должен быть поднят:**
+**Для корректной работы приложения в локальном профиле вручную должен быть поднят:**
 
 + Сервер Minio. В application.yml вынесены: minio url, access key и secret key.
 + Сервер Redis. В application.yml вынесены: host и port сервера.
@@ -81,7 +81,20 @@
 + Удаление по id
     Пример http-запрос GET http://localhost:8011/storage/customer/deleteById?id=12
 
-# Docker профиль
+# Профиль микросервиса (local-discovery)
+
+**Для корректной работы приложения в режиме микросервиса вручную должен быть поднят:**
+
++ Сервер Minio. В application.yml вынесены: minio url, access key и secret key.
++ Сервер Redis. В application.yml вынесены: host и port сервера.
++ Сервер PostgreSQL. В application.yml вынесены все настройки.
++ Сервер Eureca Service Discovery (https://github.com/Patron4747/discovery.git).
++ После запуска всех серверов и текущего приложения необходимо убедится, что приложение зарегистрировано и 
+корректно обнаруживается сервером Eureca - http://localhost:8761
++ Если все выполнено корректно наш микросервис доступен для других микросервисов, например 
+http://storage/storage/customer/getAll
+
+# Docker профиль (docker)
 
 + Приложение настроено для запуска при помощи единственной команды docker-compose up, которой нужно
     "скормить" файл docker-compose.yml
