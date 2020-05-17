@@ -7,10 +7,7 @@ import com.business.storage.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +31,14 @@ public class QuestionController {
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(allQuestions);
+    }
+
+    @GetMapping("/getQuestion")
+    public ResponseEntity<?> getQuestion(@RequestParam String id) {
+        Question question = questionRepository.findById(Long.parseLong(id)).orElse(null);
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(question);
     }
 
     @GetMapping(path = "/{questionId}/getAnswersTree")
