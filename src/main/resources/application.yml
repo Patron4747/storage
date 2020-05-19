@@ -4,8 +4,6 @@
 
 server:
   port: 8011
-  servlet:
-    context-path: /storage
 
 minio:
   url:  http://minio1:9000
@@ -24,7 +22,7 @@ spring:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         jdbc:
@@ -42,8 +40,6 @@ spring:
 
 server:
   port: 8011
-  servlet:
-    context-path: /storage
 
 minio:
   url:  http://127.0.0.1:9000
@@ -80,8 +76,6 @@ spring:
 
 server:
   port: 8011
-  servlet:
-    context-path: /storage
 
 minio:
   url:  http://127.0.0.1:9000
@@ -100,7 +94,7 @@ spring:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         jdbc:
@@ -113,7 +107,7 @@ spring:
     password: 58742
 
   application:
-    name: storage # Example of access from another microservice - http://storage/...
+    name: storage
 
 eureka:
   client:
