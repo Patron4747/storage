@@ -70,6 +70,12 @@ spring:
     username: postgres
     password: 58742
 
+eureka:
+  client:
+    enabled: false
+    register-with-eureka: false
+
+
 ---
 
 #Discovery Profile
