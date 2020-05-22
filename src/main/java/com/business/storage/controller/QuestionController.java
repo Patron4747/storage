@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,20 @@ public class QuestionController {
     private QuestionRepository questionRepository;
     @Autowired
     private AnswerRepository answerRepository;
+
+    @PostMapping("/saveQuestion")
+    public ResponseEntity<Question> saveQuestion(@RequestBody Question question) {
+        Question saveQuestion = questionRepository.save(question);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(saveQuestion.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(saveQuestion);
+
+    }
 
     @GetMapping("/getAllQuestions")
     public ResponseEntity<?> getAllQuestions() {
